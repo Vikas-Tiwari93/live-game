@@ -93,9 +93,9 @@ playfn = () => {
           console.log("i am in round 3");
 
           setTimeout(round3fn, 1000); //round3 start management}
-        } else if (enemyhealth <= 0 && round > 3) {
-          youwin.append(" ", document.getElementById("warcry").value);
-          youwin.style.visibility = "visible";
+        } else if (enemyhealth <= 0 || (playerhealth <= 0 && round > 3)) {
+          end();
+
           clearInterval(id);
         }
 
@@ -107,24 +107,13 @@ playfn = () => {
       } else if (timevalchange <= 1) {
         if (round === 2) {
           setTimeout(round2fntime, 1000);
-          // document
-          //   .getElementById("youwin")
-          //   .append(document.getElementById("warcry").value);
-
-          // document.getElementById("youwin").style.visibility = "visible";
-          // clearInterval(id);
         } else if (round === 3) {
-          console.log("i am here js", round);
-
+          console.log("round 3 starts", round);
           setTimeout(round3fntime, 900);
-          // document;
-
-          // document.getElementById("gameover").style.visibility = "visible";
-          // clearInterval(id);
-        } else {
           console.log("round 3 ends", round);
+        } else if (round > 3) {
+          endtime();
 
-          document.getElementById("gameover").style.visibility = "visible";
           clearInterval(id);
         }
         timevalchange += -1;
