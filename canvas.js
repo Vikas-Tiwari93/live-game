@@ -69,7 +69,7 @@ export class sprite extends bgsprite {
     //for attack radius
     this.attackbox = {
       position: { x: this.position.x, y: this.position.y },
-      width: 200,
+      width: 130,
       height: 50,
     };
     this.color = color;

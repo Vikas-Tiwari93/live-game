@@ -1,5 +1,7 @@
 let winneryou = {};
 let winnerenemy = {};
+let enemywin = document.getElementsByClassName("enemywin");
+let playerwin = document.getElementsByClassName("playerwin");
 
 //round 2 start
 let round2fn = () => {
@@ -77,8 +79,10 @@ let end = () => {
   if (Object.keys(winneryou).length > Object.keys(winnerenemy).length) {
     youwin.append(" ", document.getElementById("warcry").value);
     youwin.style.visibility = "visible";
+    print();
   } else {
     document.getElementById("gameover").style.visibility = "visible";
+    print();
   }
 };
 
@@ -157,7 +161,23 @@ let endtime = () => {
   if (Object.keys(winneryou).length > Object.keys(winnerenemy).length) {
     youwin.append(" ", document.getElementById("warcry").value);
     youwin.style.visibility = "visible";
+    print();
   } else {
     document.getElementById("gameover").style.visibility = "visible";
+    print();
+  }
+};
+
+//print rounds
+const print = () => {
+  let playerkeys = Object.keys(winneryou);
+  let enemykeys = Object.keys(winnerenemy);
+  for (let i = 0; i < playerkeys.length; i++) {
+    playerwin[0].append(" ", playerkeys[i], " , ");
+    playerwin[1].append(" ", playerkeys[i], " , ");
+  }
+  for (let i = 0; i < enemykeys.length; i++) {
+    enemywin[0].append(" ", enemykeys[i], " , ");
+    enemywin[1].append(" ", enemykeys[i], " , ");
   }
 };

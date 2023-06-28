@@ -16,7 +16,7 @@ export const enemykeys = {
   c: false, //defend
 };
 window.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") {
+  if (e.key === "ArrowRight" && enemy.position.x - player.position.x > 50) {
     keys.ArrowRight = true;
   } else if (e.key === "ArrowLeft") {
     keys.ArrowLeft = true;

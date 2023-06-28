@@ -117,7 +117,7 @@ function animation() {
   }
   if (enemykeys.z === true) {
     enemysprites("attack");
-    enemy.velocity.x = -3;
+    enemy.velocity.x = -1;
   }
   if (enemykeys.x === true) {
     enemysprites("block");

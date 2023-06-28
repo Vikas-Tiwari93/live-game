@@ -1,4 +1,4 @@
-import { enemykeys } from "./eventlisteners.js";
+import { enemykeys, keys } from "./eventlisteners.js";
 import { player, enemy } from "./js.js";
 export function enemymodel() {
   //movement of enemy based on my position only
@@ -11,8 +11,8 @@ export function enemymodel() {
       enemykeys.ArrowRight = false;
     }, 200);
   } else if (
-    enemy.position.x - player.position.x <= 350 &&
-    enemy.position.x - player.position.x >= 300 &&
+    enemy.position.x - player.position.x < 230 &&
+    enemy.position.x - player.position.x >= 250 &&
     enemykeys.ArrowRight === false &&
     enemykeys.ArrowLeft === false
   ) {
@@ -29,31 +29,28 @@ export function enemymodel() {
       }, 200);
     }
   } else if (
-    enemy.position.x - player.position.x <= 250 &&
-    enemy.position.x - player.position.x >= 150 &&
+    enemy.position.x - player.position.x < 250 &&
+    enemy.position.x - player.position.x >= 200 &&
     enemykeys.ArrowLeft === false
   ) {
-    let count = Math.round(Math.random());
-    if (count === 0) {
+    let count2 = Math.floor(1 + 4 * Math.random());
+    if (count2 === 1) {
       enemykeys.ArrowLeft = true;
       setTimeout(() => {
         enemykeys.ArrowLeft = false;
       }, 200);
-    } else {
-      let count2 = Math.round(Math.random());
-      if (count2 === 0 && enemykeys.z === false) {
-        enemy.attack();
-        enemykeys.z = true;
-        setTimeout(() => {
-          enemykeys.z = false;
-        }, 500);
-      } else if (count2 != 0 && enemykeys.x === false) {
-        enemy.defend();
-        enemykeys.x = true;
-        setTimeout(() => {
-          enemykeys.x = false;
-        }, 200);
-      }
+    } else if (count2 === 2 && enemykeys.z === false) {
+      enemy.attack();
+      enemykeys.z = true;
+      setTimeout(() => {
+        enemykeys.z = false;
+      }, 500);
+    } else if (count2 === 3 && enemykeys.z === false) {
+      enemy.defend();
+      enemykeys.x = true;
+      setTimeout(() => {
+        enemykeys.x = false;
+      }, 200);
     }
   } else if (
     player.velocity.y != 0 &&
@@ -71,13 +68,13 @@ export function enemymodel() {
   }
   // attack& defend
   else if (
-    enemy.position.x - player.position.x <= 150 &&
-    enemy.position.x - player.position.x >= 10 &&
+    enemy.position.x - player.position.x < 200 &&
+    enemy.position.x - player.position.x <= 100 &&
     enemykeys.x === false &&
     enemykeys.z === false &&
     enemykeys.ArrowLeft === false
   ) {
-    let count = Math.floor(1 + 2 * Math.random());
+    let count = Math.floor(1 + 5 * Math.random());
     if (count === 1) {
       enemykeys.x = true;
       enemy.attack();
@@ -90,40 +87,37 @@ export function enemymodel() {
       setTimeout(() => {
         enemykeys.z = false;
       }, 500);
-    } else {
+    } else if (count === 3) {
       enemykeys.ArrowLeft = true;
       setTimeout(() => {
         enemykeys.ArrowLeft = false;
       }, 200);
     }
   } else if (
-    enemy.position.x - player.position.x <= 10 &&
-    enemy.position.x - player.position.x >= -200 &&
-    enemykeys.x === false &&
-    enemykeys.z === false &&
-    enemykeys.ArrowLeft === false
+    enemy.position.x - player.position.x < 100 &&
+    enemy.position.x - player.position.x >= 0
   ) {
-    let count = Math.floor(1 + 10 * Math.random());
+    console.log("i am here 50,-100");
+    let count = Math.floor(1 + 4 * Math.random());
     if (count === 1) {
       enemykeys.x = true;
       enemy.attack();
       setTimeout(() => {
         enemykeys.x = false;
       }, 200);
-    } else if (count === 2) {
-      enemykeys.z = true;
-      enemy.attack();
+    } else if (count === 2 && enemy.position.y >= 440) {
+      enemykeys[" "] = true;
       setTimeout(() => {
-        enemykeys.z = false;
-      }, 500);
+        enemykeys[" "] = false;
+      }, 100);
     } else {
       enemykeys.ArrowLeft = true;
       setTimeout(() => {
         enemykeys.ArrowLeft = false;
-      }, 200);
+      }, 500);
     }
   } else if (
-    enemy.position.x - player.position.x < -200 &&
+    enemy.position.x - player.position.x < -100 &&
     enemykeys.x === false &&
     enemykeys.z === false &&
     enemykeys.ArrowLeft === false
